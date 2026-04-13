@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
 import { applyForVendor, approveVendor } from "./vendor.service.ts"
 
-interface AuthRequest extends Request {
+export interface AuthRequest extends Request {
   user: {
     id: string;
     role: string;

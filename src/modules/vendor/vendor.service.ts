@@ -9,7 +9,6 @@ export const applyForVendor = async (userId: string, data: any)=> {
     //check if user exists
     const user = await User.findOne({ _id: userId });
     if(!user) throw new Error('User not found');
-
     const vendor = await Vendor.create({
         userId,
         ...data
@@ -21,6 +20,8 @@ export const applyForVendor = async (userId: string, data: any)=> {
 export const approveVendor = async (vendorId: string)=>{
     const vendor = await Vendor.findById(vendorId);
     if(!vendor) throw new Error('Vendor not found');
+
+    if(vendor.status === 'approved') throw new Error('Vendor already approved');
 
     vendor.status = 'approved';
     await vendor.save();

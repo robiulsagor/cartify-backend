@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import authRoutes from "./modules/auth/auth.routes.ts";
 import vendorRoutes from "./modules/vendor/vendor.route.ts";
+import productRoutes from "./modules/product/product.rotue.ts";
 
 dotenv.config();
 
@@ -13,6 +14,7 @@ app.use(express.json());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/vendor", vendorRoutes);
+app.use("/api/product", productRoutes);
 
 app.get("/", (req, res)=> {
     res.send("Hello World!");

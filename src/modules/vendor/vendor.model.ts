@@ -4,7 +4,7 @@ export interface IVendor extends Document {
     userId: mongoose.Types.ObjectId;
     storeName: string;
     description?: string;
-    status: 'pending' | 'approved' | 'rejected';
+    status: 'pending' | 'approved' | 'rejected' | 'blocked';
 }
 
 const vendorSchema = new Schema<IVendor>({
@@ -20,7 +20,7 @@ const vendorSchema = new Schema<IVendor>({
     description: String,
     status: {
         type: String,
-        enum: ['pending', 'approved', 'rejected'],
+        enum: ['pending', 'approved', 'rejected', 'blocked'],
         default: 'pending'
     }
 

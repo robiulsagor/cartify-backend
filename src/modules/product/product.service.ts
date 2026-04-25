@@ -1,3 +1,4 @@
+import Category from "../category/category.model.ts";
 import Vendor from "../vendor/vendor.model.ts"
 import Product from "./product.model.ts";
 
@@ -7,6 +8,11 @@ export const createProduct = async (userId: string, productData: any) => {
     const vendor = await Vendor.findOne({ userId });
     if (!vendor || vendor.status !== "approved") {
         throw new Error("Not an approved vendor!");
+    }
+
+    const category = await Category.findById(productData.categoryId);
+    if(!category){
+        throw new Error("Invalid category!")
     }
 
     const product = await Product.create({
@@ -44,4 +50,8 @@ export const updateProduct = async (userId: string, productId: string, data: any
     Object.assign(product, data)
     await product.save();
     return product;
+}
+
+export const deleteProduct = async (userId: string, productId: string) => {
+
 }

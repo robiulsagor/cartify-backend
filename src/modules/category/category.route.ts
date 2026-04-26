@@ -5,9 +5,9 @@ import { authorize } from '../../common/middleware/role.middleware.ts';
 
 const router = express.Router()
 
-router.post("/", auth, authorize("admin"), create)
+router.post("/create", auth, authorize("admin"), create)
 
-router.get("/", get)
+router.get("/get", get)
 
 router.put("/:id", auth, authorize("admin"), updateCat)
 
